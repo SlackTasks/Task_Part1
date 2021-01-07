@@ -1,3 +1,5 @@
+//Lava
+
 function numberOfMax(arg) {
 
     var max = arg[0];
@@ -16,3 +18,5 @@ function numberOfMax(arg) {
 
     return numOfMax;
 }
+
+

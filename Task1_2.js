@@ -1,3 +1,5 @@
+//Lava
+
 function sortDesc(arg) {
 
     for (var i = 0; i < arg.length - 1; i++) {
@@ -15,3 +17,5 @@ function sortDesc(arg) {
     }
     return arg;
 }
+
+console.log(sortDesc([1, -5, -1, 5, 4]));
