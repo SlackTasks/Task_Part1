@@ -6,6 +6,8 @@
 դ) առաջին կամ երրորդ քառորդում:  
 Հակառակ դեպքում արտածել NO: */
 
+
+///Nuynnel stex
 function ifTrue(x, y) {
   if (x < 0 && y > 0) return "YES";
   else if (x > 0 && y < 0) return "YES";
