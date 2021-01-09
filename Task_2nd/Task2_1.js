@@ -17,7 +17,10 @@ function isAnyZero(a, b, c) {
 
 
 function isOnlyOneFive(a, b, c) {
-    if ((a === 5 && a !== b && a !== c) || (b === 5 && a !== b && c !== b) || (c === 5 && a !== c && b !== c)) {
+    //if(a==5 || b==5 || c==5)
+    if ((a === 5 && a !== b && a !== c) ||
+        (b === 5 && a !== b && c !== b) ||
+        (c === 5 && a !== c && b !== c)) {
         return "YES";
     }
     return "NO";
@@ -25,7 +28,7 @@ function isOnlyOneFive(a, b, c) {
 
 
 function isDifferent(a, b, c) {
-    if (a==b || a==c || b==c) {
+    if (a == b || a == c || b == c) {
         return "NO";
     }
     return "YES";
@@ -33,7 +36,7 @@ function isDifferent(a, b, c) {
 
 
 function isOnlyTwoEqual(a, b, c) {
-    if ((a===b && a!==c) || (a===c && b!==c) || (b===c && a!==c)) {
+    if ((a === b && a !== c) || (a === c && b !== c) || (b === c && a !== c)) {
         return "YES";
     }
 
@@ -42,7 +45,7 @@ function isOnlyTwoEqual(a, b, c) {
 
 
 function areAllEqual(a, b, c) {
-    if (a===b && a===c) return "YES";
+    if (a === b && a === c) return "YES";
     return "NO";
 }
 
