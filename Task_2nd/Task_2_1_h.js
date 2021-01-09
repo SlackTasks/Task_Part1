@@ -13,21 +13,25 @@ if(a==5 || b==5 || c==5){
 }else{
     console.log("No")
 }
-if(a!=b || a!=c || b!=c){
+
+if(a!=b || a!=c || b!=c){ ///petqa kirarvi &&-@ qani vor payman@ xista drvac
     console.log("Yes")
 }else{
     console.log("No")
 }
+
 if(a==b || a==c || b==c){
     console.log("Yes")
 }else{
     console.log("No")
 }
+
 if(a==b && a==c && b==c){
     console.log("Yes")
 }else{
     console.log("No")
 }
+
 if(a<0 || b<0 || c<0){
     console.log("Yes")
 }else{

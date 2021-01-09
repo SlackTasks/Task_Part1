@@ -6,7 +6,7 @@ if(z<d && z<f){
     console.log(z)
 }else if(f<z && f<d){
     console.log(f)
-}else if(d<z && d<f){
+}else if(d<z && d<f){ ///Stex karox es miangamic console.log(d) gres, kariq chka avelor payman stugel
     console.log(d)
 }
 
@@ -14,7 +14,7 @@ if(z>d && z>f){
     console.log(z)
 }else if(f>z && f>d){
     console.log(f)
-}else if(d>z && d>f){
+}else if(d>z && d>f){ //nuynnel stex
     console.log(d)
 }
 
