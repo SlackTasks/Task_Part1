@@ -7,8 +7,9 @@ document.getElementById("user-form").addEventListener('submit', (e) => {
 
     const newUser = new User(firstName, lastName, email);
 
-    console.log(newUser);
-
     UserUIManager.addUserToTable(newUser);
+
     UserUIManager.clearFields();
+
+    document.getElementById("addSaveBtn").value == "Add";
 });
