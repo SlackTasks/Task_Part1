@@ -24,6 +24,33 @@ table {
 }
 .inputFields input {
   padding: 10px;
-  color: #cccccc;
   margin-right: 15px;
+}
+.action_btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.action_btns i {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.action_btns i:first-of-type {
+  color: blue;
+}
+.action_btns i:nth-child(2) {
+  color: red;
+}
+.saveData {
+  padding: 10px;
+  margin-left: 10px;
+  display: none;
+}
+.addButton {
+  padding: 10px;
+}
+.bulkDelete {
+  padding: 10px;
+  margin-left: 10px;
+  display: none;
 }

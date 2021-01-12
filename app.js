@@ -32,14 +32,16 @@ window.onload = () => {
 function idGenerator() {
   return Math.random().toString(32).slice(2);
 }
+
 function loadTableData(data) {
   const tableBody = document.getElementById("tableData");
   let htmlData = "";
+  let count = 1;
   for (let user of data) {
-    user.id = idGenerator();
-    htmlData += `<tr><td>${user.id}</td><td>${user.fullName}</td><td>${user.email}</td><td>
+    htmlData += `<tr><td>${count}</td><td>${user.fullName}</td><td>${user.email}</td><td class="action_btns">
   <i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i><input type="checkbox" /> 
     </td></tr>`;
+    count++;
   }
   tableBody.innerHTML = htmlData;
 }
@@ -52,7 +54,7 @@ function addUser() {
   if (name && surname && email) {
     let fullName = `${name} ${surname}`;
     let user = {
-      id: idGenerator(),
+      userId: idGenerator(),
       fullName,
       email,
     };
@@ -61,4 +63,5 @@ function addUser() {
     loadTableData(data);
   }
 }
+
 document.querySelector(".addButton").addEventListener("click", addUser);
