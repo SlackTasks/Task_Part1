@@ -1,5 +1,7 @@
 class UserUIManager {
 
+    static savedUsers = 0;
+
     static addUserToTable(user) {
         const usersList = document.getElementById("user-list");
 
@@ -19,6 +21,7 @@ class UserUIManager {
 
 
         usersList.appendChild(row);
+        UserUIManager.savedUsers++;
     }
 
 
@@ -29,24 +32,48 @@ class UserUIManager {
     }
 
 
-    static getUserToEdit(el) {
+
+    static performAction(el) {
         if (el.classList.contains('edit')) {
+            UserUIManager.getUserToEdit(el);
+        } else if (el.classList.contains('delete')) {
+            el.parentElement.parentElement.remove();
 
-            let fullName = el.parentElement.parentElement.getElementsByTagName("td")[1].innerText;
-            let email = el.parentElement.parentElement.getElementsByTagName("td")[2].innerText;
+            UserUIManager.savedUsers--;
 
-            let firstLastNameArr = fullName.split(' ');
-            let firstName = firstLastNameArr[0];
-            let lastName = firstLastNameArr[1];
-
-            document.querySelector("#firstName").value = firstName;
-            document.querySelector("#lastName").value = lastName;
-            document.querySelector("#email").value = email;
-
-            document.getElementById("addSaveBtn").value = "Save";
+            UserUIManager.makeUserTableIDsSequential();
 
         }
     }
+
+
+    static getUserToEdit(el) {
+        let fullName = el.parentElement.parentElement.getElementsByTagName("td")[1].innerText;
+        let email = el.parentElement.parentElement.getElementsByTagName("td")[2].innerText;
+
+        let firstLastNameArr = fullName.split(' ');
+        let firstName = firstLastNameArr[0];
+        let lastName = firstLastNameArr[1];
+
+        document.querySelector("#firstName").value = firstName;
+        document.querySelector("#lastName").value = lastName;
+        document.querySelector("#email").value = email;
+
+        document.getElementById("addSaveBtn").value = "Save";
+    }
+
+
+    static makeUserTableIDsSequential() {
+        const userListRows = document.getElementById("user-list").rows;
+        const len = userListRows.length;
+
+        for (let i = 0; i < len; i++) {
+            userListRows[i].cells[0].innerText = i;
+        }
+
+
+    }
+
 
 
     static saveEditedUser(rowToEdit, firstName, lastName, email) {

@@ -26,6 +26,6 @@ document.getElementById("user-form").addEventListener('submit', (e) => {
 
 
 document.querySelector("#user-list").addEventListener('click', (e) => {
-    UserUIManager.getUserToEdit(e.target);
+    UserUIManager.performAction(e.target);
     rowToEdit = e.target;
 });
