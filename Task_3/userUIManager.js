@@ -2,6 +2,9 @@ class UserUIManager {
 
     static savedUsers = 0;
 
+    static isBulkBtnCreated = false;
+    static checkedCount = 0;
+
     static addUserToTable(user) {
         const usersList = document.getElementById("user-list");
 
@@ -14,7 +17,7 @@ class UserUIManager {
         
         <a href="#" class="btn btn-primary btn-sm edit">Edit<a/>
         <a href="#" class="btn btn-danger btn-sm delete">Delete<a/>
-        <input type="checkbox" id="checkBox-${user.getId()}">
+        <input type="checkbox" class="bulkDeleteCheck">
         
         </td>
         `;
@@ -43,6 +46,34 @@ class UserUIManager {
 
             UserUIManager.makeUserTableIDsSequential();
 
+        } else if (el.classList.contains('bulkDeleteCheck')) {
+            console.log("clicked...");
+            console.log(`Before el.checked..${UserUIManager.checkedCount}`);
+            //UserUIManager.addBulkDeleteButton();
+            if (el.checked) {
+                UserUIManager.checkedCount++;
+                console.log(`In el.checked..${UserUIManager.checkedCount}`);
+
+                if (UserUIManager.checkedCount >= 2 &&
+                     UserUIManager.isBulkBtnCreated==false) {
+                        UserUIManager.addBulkDeleteButton();
+                        UserUIManager.isBulkBtnCreated = true;
+                        
+
+                     }
+            } else {
+                console.log(`In el.unchecked..${UserUIManager.checkedCount}`);
+                UserUIManager.checkedCount--;
+
+                console.log(`In el.unchecked before -- ..${UserUIManager.checkedCount}`);
+
+                if (UserUIManager.checkedCount < 2 
+                    && UserUIManager.isBulkBtnCreated==true) {
+                    UserUIManager.isBulkBtnCreated = false;
+
+                    document.getElementById("bulkDeleteBtn").remove();
+                }
+            }
         }
     }
 
@@ -70,8 +101,6 @@ class UserUIManager {
         for (let i = 0; i < len; i++) {
             userListRows[i].cells[0].innerText = i;
         }
-
-
     }
 
 
@@ -81,5 +110,59 @@ class UserUIManager {
 
         rowToEdit.parentElement.parentElement.getElementsByTagName("td")[1].innerText = fullName;
         rowToEdit.parentElement.parentElement.getElementsByTagName("td")[2].innerText = email;
+    }
+
+
+    static addBulkDeleteButton() {  
+        var bulkDeleteDiv = document.getElementById("bulkDelete");  
+           
+        var button = document.createElement('BUTTON');       
+        var text = document.createTextNode("Bulk Delete");                 
+        button.appendChild(text); 
+
+        button.setAttribute("id", "bulkDeleteBtn");
+        button.setAttribute("class", "btn btn-primary btn-block");
+
+        button.addEventListener('click', (e) => {
+            UserUIManager.bulkDelete();
+        });
+          
+        
+        bulkDeleteDiv.appendChild(button); 
+    }  
+
+
+    static bulkDelete() {
+        const userList = document.getElementById("user-list");
+        const userListRows = userList.rows;
+
+        let i = 0;
+
+        while (i < userListRows.length) {
+            const row = userListRows[i];
+
+            var rowCheckBox = row.cells[3].getElementsByClassName('bulkDeleteCheck')[0];
+
+            if (rowCheckBox.checked) {
+                rowCheckBox.parentElement.parentElement.parentElement.remove();
+                i = 0;
+                UserUIManager.checkedCount--;
+                UserUIManager.savedUsers--;
+                
+            } else {
+                i++;
+            }
+            
+        }
+
+        if (UserUIManager.checkedCount < 2 
+            && UserUIManager.isBulkBtnCreated==true) {
+            UserUIManager.isBulkBtnCreated = false;
+
+            document.getElementById("bulkDeleteBtn").remove();
+            
+        }
+        
+        UserUIManager.makeUserTableIDsSequential();
     }
 }

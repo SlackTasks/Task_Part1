@@ -29,3 +29,4 @@ document.querySelector("#user-list").addEventListener('click', (e) => {
     UserUIManager.performAction(e.target);
     rowToEdit = e.target;
 });
+
