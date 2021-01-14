@@ -34,3 +34,24 @@ document.querySelector("#user-list").addEventListener('click', (e) => {
     UserUIManager.performAction(e.target);
     rowToEdit = e.target;
 });
+
+
+document.getElementById("search").addEventListener("keyup", (e) => {
+    
+    let filter = e.target.value.toUpperCase();
+   
+    let userList = document.getElementById("user-list");
+    let rows = userList.rows;
+
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        let fullName = row.cells[1].textContent;
+
+        if (fullName.toUpperCase().includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+    
+});
