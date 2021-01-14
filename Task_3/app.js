@@ -1,5 +1,8 @@
 let rowToEdit = null;
 
+document.addEventListener('DOMContentLoaded', UserUIManager.showUsers);
+
+
 document.getElementById("user-form").addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -9,12 +12,14 @@ document.getElementById("user-form").addEventListener('submit', (e) => {
 
     if (document.getElementById("addSaveBtn").value === "Add") {
 
+        if (firstName !== '' && lastName !== '' && email !== '') {
+            const newUser = new User(firstName, lastName, email);
 
-        const newUser = new User(firstName, lastName, email);
+            UserUIManager.addUserToTable(newUser);
 
-        UserUIManager.addUserToTable(newUser);
-    } 
-    else if (document.getElementById("addSaveBtn").value === "Save" && rowToEdit !== null) {
+            UserLocalStorageManager.addUser(newUser);
+        }
+    } else if (document.getElementById("addSaveBtn").value === "Save" && rowToEdit !== null) {
 
         UserUIManager.saveEditedUser(rowToEdit, firstName, lastName, email);
     }
@@ -29,4 +34,3 @@ document.querySelector("#user-list").addEventListener('click', (e) => {
     UserUIManager.performAction(e.target);
     rowToEdit = e.target;
 });
-
